@@ -1,1 +1,1 @@
-# FitnessActivityTracker
+# Fitness Activity Tracker
