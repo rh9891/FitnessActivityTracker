@@ -3,7 +3,6 @@ const Workout = require("../models/Workout.js");
 module.exports = (app) => {
 // Referencing the api.js file, the following API routes are needed:
 
-
 // The GET route for "/api/workouts/"
 app.get("api/workouts", (req, res) => {
     Workout.find()
@@ -23,7 +22,6 @@ app.post("api/workouts", (req, res) => {
         res.json(err);
     });
 });
-
 
 // The GET route for "/api/workouts/range"
 app.get("/api/workouts/range", (req, res) => {
@@ -46,10 +44,10 @@ app.post("/api/workouts/range", (req, res) => {
     });
 });
 
-// Need to be able to find the workout and update it.
+// Need to be able to find the last workout and update it.
 app.put("/api/workouts/:id", (req, res) => {
     Workout.findOneAndUpdate(
-        { _id: req.params.id },
+        { id: req.params.id },
         {
             $inc: { totalDuration: req.body.duration },
             $push: { exercises: req.body }
