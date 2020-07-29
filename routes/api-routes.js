@@ -5,7 +5,8 @@ module.exports = (app) => {
 
 // The GET route for "/api/workouts/"
 app.get("api/workouts", (req, res) => {
-    Workout.find()
+    Workout.find({})
+    .populate("exercises")
     .then(dbWorkout => {
         res.json(dbWorkout)
     }).catch(err => {
@@ -16,6 +17,7 @@ app.get("api/workouts", (req, res) => {
 // The POST route for "/api/workouts/" to create the workout.
 app.post("api/workouts", (req, res) => {
     Workout.create({})
+    .populate("exercises")
     .then(dbWorkout =>
         res.json(dbWorkout))
     .catch(err => {
@@ -25,7 +27,8 @@ app.post("api/workouts", (req, res) => {
 
 // The GET route for "/api/workouts/range"
 app.get("/api/workouts/range", (req, res) => {
-    Workout.find()
+    Workout.find({})
+    .populate("exercises")
     .then(dbWorkout => {
         console.log(dbWorkout);
         res.json(dbWorkout);
@@ -53,6 +56,7 @@ app.put("/api/workouts/:id", (req, res) => {
             $push: { exercises: req.body }
         },
         { new: true })
+        .populate("exercises")
         .then(dbWorkout => {
             res.json(dbWorkout);
         }).catch(err => {
