@@ -1,4 +1,4 @@
-const db = require("./models");
+const Workout = ("../models/workout");
 
 module.exports = (app) => {
 // Referencing the api.js file, the following API routes are needed:
@@ -6,7 +6,7 @@ module.exports = (app) => {
 
 // The GET route for "/api/workouts/"
 app.get("api/workouts", (req, res) => {
-    db.Workout.find({})
+    Workout.find()
     .then(dbWorkout => {
         dbWorkout.forEach(workout => {
             const total = 0;
@@ -22,8 +22,8 @@ app.get("api/workouts", (req, res) => {
 });
 
 // The POST route for "/api/workouts/" to create the workout.
-app.post("api/workouts", ({ body }, res) => {
-    db.Workout.create(body)
+app.post("api/workouts", (req, res) => {
+    Workout.create({})
     .then((dbWorkout => {
         console.log(dbWorkout);
         res.json(dbWorkout);
@@ -35,7 +35,7 @@ app.post("api/workouts", ({ body }, res) => {
 
 // The GET route for "/api/workouts/range"
 app.get("/api/workouts/range", (req, res) => {
-    db.Workout.find({})
+    Workout.find()
     .then(dbWorkout => {
         console.log(dbWorkout);
         res.json(dbWorkout);
@@ -45,7 +45,7 @@ app.get("/api/workouts/range", (req, res) => {
 });
 
 app.post("/api/workouts/range", (req, res) => {
-    db.Workout.create({})
+    Workout.create({})
     .then(dbWorkout => {
         console.log(dbWorkout);
         res.json(dbWorkout);
@@ -56,7 +56,7 @@ app.post("/api/workouts/range", (req, res) => {
 
 // Need to be able to find the workout and update it.
 app.put("/api/workouts/:id", (req, res) => {
-    db.Workout.findOneAndUpdate(
+    Workout.findOneAndUpdate(
         { id: req.params.id },
         {
             $inc: { totalDuration: req.body.duration },
