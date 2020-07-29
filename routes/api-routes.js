@@ -1,4 +1,4 @@
-const Workout = ("../models/Workout");
+const Workout = require("../models/Workout.js");
 
 module.exports = (app) => {
 // Referencing the api.js file, the following API routes are needed:
