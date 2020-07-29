@@ -8,13 +8,6 @@ module.exports = (app) => {
 app.get("api/workouts", (req, res) => {
     Workout.find()
     .then(dbWorkout => {
-        dbWorkout.forEach(workout => {
-            const total = 0;
-            workout.exercises.forEach(event => {
-                total += event.duration;
-            });
-            workout.totalDuration = total;
-        });
         res.json(dbWorkout)
     }).catch(err => {
         res.json(err)
@@ -55,12 +48,12 @@ app.post("/api/workouts/range", (req, res) => {
 });
 
 // Need to be able to find the workout and update it.
-app.put("/api/workouts/:id", (req, res) => {
+app.put("/api/workouts/:id", ({body, params}, res) => {
     Workout.findOneAndUpdate(
         { id: req.params.id },
         {
             $inc: { totalDuration: req.body.duration },
-            $push: { exercises: req.body }
+            $push: { exercises: body }
         },
         { new: true })
         .then(dbWorkout => {
