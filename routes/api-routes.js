@@ -8,14 +8,18 @@ module.exports = () => {
 app.get("api/workouts", (req, res) => {
     db.Workout.find({})
     .then(dbWorkout => {
+        dbWorkout.forEach(workout => {
+            const total = 0;
+            workout.exercises.forEach(event => {
+                total += event.duration;
+            });
+            workout.totalDuration = total;
+        });
         res.json(dbWorkout)
     }).catch(err => {
         res.json(err)
     });
 });
-
-// The PUT route for "/api/workouts/"
-
 
 // The POST route for "/api/workouts/" to create the workout.
 app.post("api/workouts", ({ body }, res) => {
@@ -57,5 +61,4 @@ app.put("/api/workouts/:id", (req, res) => {
         });
     });
     
-
 }
