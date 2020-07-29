@@ -1,6 +1,6 @@
 const db = require("./models");
 
-module.exports = () => {
+module.exports = (app) => {
 // Referencing the api.js file, the following API routes are needed:
 
 
@@ -44,6 +44,15 @@ app.get("/api/workouts/range", (req, res) => {
     });
 });
 
+app.post("/api/workouts/range", (req, res) => {
+    db.Workout.create({})
+    .then(dbWorkout => {
+        console.log(dbWorkout);
+        res.json(dbWorkout);
+    }).catch(err => {
+        res.json(err);
+    });
+});
 
 // Need to be able to find the workout and update it.
 app.put("/api/workouts/:id", (req, res) => {
