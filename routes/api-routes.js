@@ -1,4 +1,5 @@
 const Workout = require("../models/Workout.js");
+Workout.collection.drop();
 
 module.exports = (app) => {
 // The GET route for "/api/workouts/"
@@ -11,12 +12,6 @@ app.get("/api/workouts", (req, res) => {
             res.json(dbWorkout);
         }
     });
-    // .populate("exercises")
-    // .then(dbWorkout => {
-    //     res.json(dbWorkout)
-    // }).catch(err => {
-    //     res.json(err)
-    // });
 });
 
 // The POST route for "/api/workouts/" to create the workout.
@@ -29,12 +24,6 @@ app.post("/api/workouts", (req, res) => {
             res.json(dbWorkout);
         }
     });
-    // .populate("exercises")
-    // .then(dbWorkout =>
-    //     res.json(dbWorkout))
-    // .catch(err => {
-    //     res.json(err);
-    // });
 });
 
 // The GET route for "/api/workouts/range"
@@ -47,13 +36,6 @@ app.get("/api/workouts/range", (req, res) => {
             res.json(dbWorkout);
         }
     });
-    // .populate("exercises")
-    // .then(dbWorkout => {
-    //     console.log(dbWorkout);
-    //     res.json(dbWorkout);
-    // }).catch(err => {
-    //     res.json(err);
-    // });
 });
 
 app.post("/api/workouts/range", (req, res) => {
@@ -69,9 +51,9 @@ app.post("/api/workouts/range", (req, res) => {
 // Need to be able to find the last workout and update it.
 app.put("/api/workouts/:id", (req, res) => {
     Workout.findOneAndUpdate(
-        { id: req.params.id },
+        { _id: req.params.id },
         { $push: { exercises: req.body } },
-        { new: true })
+        { new: true, runValidators: true})
         .populate("exercises")
         .then(dbWorkout => {
             res.json(dbWorkout);
