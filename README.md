@@ -48,7 +48,7 @@ THEN I should be able to track and display the distance traveled.
 
 The following animation demonstrates the complete application functionality:
 
-![Fitness Activity Tracker Preview]()
+![Fitness Activity Tracker Preview](https://github.com/rh9891/FitnessActivityTracker/blob/master/public/images/fitnessActivityTrackerPreview.gif)
 
 ## Links
 
@@ -69,6 +69,10 @@ $ npm install express
 
 ~~~
 $ npm install morgan
+~~~
+
+~~~
+$ npm install dotenv
 ~~~
 
 The following dependency - though optional - can also be used as it automatically restarts the node application when file changes in the directory are detected. Saving it as a `devDependency` allows the user to run the application using Nodemon:
