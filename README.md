@@ -42,9 +42,9 @@ THEN I should be able to track and display the distance traveled.
 
 ## Preview of the Fitness Activity Tracker
 
-![Fitness Activity Tracker Homepage](images/fitnessActivityTrackerHomepage.png)
+![Fitness Activity Tracker Homepage](public/images/fitnessActivityTrackerHomepage.png)
 
-![Fitness Activity Tracker Workout Dashboard](images/workoutDashboardPreview.png)
+![Fitness Activity Tracker Workout Dashboard](public/images/workoutDashboardPreview.png)
 
 The following animation demonstrates the complete application functionality:
 
